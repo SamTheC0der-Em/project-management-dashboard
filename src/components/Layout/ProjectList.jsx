@@ -1,5 +1,5 @@
 import  MoreHorizontal  from "../../assets/MoreHorizontal.svg";
-import { projects } from "../../utils/sidebarData";
+import { projects } from "../../data/sidebarData";
 import AddSquareIcon from "../../assets/AddSquareIcon.svg"
 export const ProjectList = ({ collapsed, activeItem, setActiveItem }) => {
   return (

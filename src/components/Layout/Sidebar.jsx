@@ -11,7 +11,7 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`min-h-screen shrink-0 bg-white border border-r border-[#dbdbdb] flex flex-col transition-all duration-300 ${collapsed ? "w-[75px]" : "w-[220px]"}`}
+      className={`flex h-full shrink-0 flex-col overflow-hidden border border-r border-[#dbdbdb] bg-white transition-all duration-300 ${collapsed ? "w-[75px]" : "w-[220px]"}`}
     >
       <SidebarHeader collapsed={collapsed} setCollapsed={setCollapsed} />
       <Navigation
@@ -19,11 +19,13 @@ export const Sidebar = () => {
         activeItem={activeItem}
         setActiveItem={setActiveItem}
       />
-      <ProjectList
-        collapsed={collapsed}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-      />
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+        <ProjectList
+          collapsed={collapsed}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+        />
+      </div>
       <ThoughtCard collapsed={collapsed} />
     </aside>
   );

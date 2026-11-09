@@ -5,8 +5,8 @@ export const ThoughtCard = ({collapsed}) => {
     <div className="mt-auto p-3">
       <div className="bg-[#F5F5F5] rounded-xl p-3 text-center">
         <div className="flex justify-center mb-2">
-          <div className="bg-yellow-100 p-2 rounded-full">
-            <Lightbulb size={17} className="text-yellow-500" />
+          <div className="relative bg-yellow-100 p-2 rounded-full">
+            <Lightbulb size={17} className=" absolute left-1.5 top-2.5text-yellow-500" />
           </div>
         </div>
 

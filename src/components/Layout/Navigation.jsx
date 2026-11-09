@@ -1,4 +1,4 @@
-import { navItems } from "../../utils/sidebarData";
+import { navItems } from "../../data/sidebarData";
 
 export const Navigation = ({ collapsed, activeItem, setActiveItem }) => {
   return (
@@ -11,7 +11,7 @@ export const Navigation = ({ collapsed, activeItem, setActiveItem }) => {
             onClick={() => setActiveItem(item.name)}
             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition ${activeItem === item.name ? "bg-indigo-50 text-indigo-600" : "text-[#787486] hover:bg-gray-50"}`}
           >
-            <img src={item.icon} className="h-[17px] w-[17px] shrink-0" />
+            <img src={item.icon} className="h-4.25 w-4.25 shrink-0" />
             {!collapsed && <span>{item.name}</span>}
           </button>
         );
