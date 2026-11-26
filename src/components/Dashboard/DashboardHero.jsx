@@ -5,23 +5,25 @@ import Grid from "../../assets/Grid.svg";
 import Separator from "../../assets/separator.svg";
 import Plus from "../../assets/Plus.svg";
 import Pencil from "../../assets/Pencil.svg";
-import People from "../../assets/People.svg";
-import Filter from "../../assets/Filter.svg";
-import Ellipse1 from "../../assets/Ellipse1.svg";
-import Ellipse2 from "../../assets/Ellipse2.svg";
-import Ellipse4 from "../../assets/Ellipse4.svg";
-import Ellipse5 from "../../assets/Ellipse5.svg";
-
+import People from "../../assets/people.svg";
+import Filter from "../../assets/filter.svg";
+import { avatars } from "../../data/profileImage";
 import Calendar from "../../assets/calendar.svg";
 import ChevronDown from "../../assets/ChevronDown.svg";
 
-export const DashboardHero = () => {
+export const DashboardHero = ({
+  projectName,
+  filter,
+  setFilter,
+  todayOnly,
+  setTodayOnly,
+}) => {
   return (
-    <section className="mt-2 flex flex-col gap-10">
+    <section className="mt-2 flex flex-col gap-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
           <h1 className="text-3xl font-semibold tracking-tight text-[#0D062D] sm:text-4xl">
-            Mobile App
+            {projectName}
           </h1>
           <Button>
             <img src={Pencil} />
@@ -32,21 +34,20 @@ export const DashboardHero = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center">
-            <Button
-              type="button"
-              className="inline-flex items-center gap-1.5 text-xs text-[#5030E5] hover:text-[#3920b8]"
-            >
-              <img src={Plus} />
-              Invite
-            </Button>
-          </div>
-          <div className="flex items-center">
-            <img src={Ellipse1} className="-ml-2 grid" />
-            <img src={Ellipse2} className="-ml-2 grid" />
-            <img src={Ellipse4} className="-ml-2 grid" />
-            <img src={Ellipse5} className="-ml-2 grid" />
-            <span className="-ml-2 grid h-10 w-10 place-items-center rounded-full border-2 border-white bg-[#F4D7DC] text-base font-medium text-[#D25B70]">
+          <Button className="inline-flex items-center gap-1.5 text-xs text-[#5030E5] hover:text-[#3920b8]">
+            <img src={Plus} />
+            Invite
+          </Button>
+          <div className="flex items-center pl-2" aria-label="Project members">
+            {avatars.map((avatar, index) => (
+              <img
+                key={avatar}
+                src={avatar}
+                className="-ml-2  rounded-full border-2 border-white object-cover"
+                style={{ zIndex: index + 1 }}
+              />
+            ))}
+            <span className="-ml-2 grid size-10 place-items-center rounded-full border-2 border-white bg-[#F4D7DC] text-xs font-medium text-[#D25B70] ">
               +2
             </span>
           </div>
@@ -54,36 +55,46 @@ export const DashboardHero = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <Button className="flex rounded-md border border-[#787486] p-2">
-            <div className="flex items-center gap-1.5">
-              <img src={Filter} />
-              Filter
-            </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <label className=" inline-flex h-8 items-center gap-1.5 rounded-md border border-[#787486] px-2.5 text-xs text-[#787486]">
+            <img src={Filter} alt="" className="size-3.5" />
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="max-w-15.5 bg-transparent  outline-none"
+            >
+              <option value="all">Filter</option>
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </label>
 
+          <Button
+            onClick={() => setTodayOnly((current) => !current)}
+            className={`inline-flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs transition ${
+              todayOnly
+                ? "border-[#5030E5] bg-[#f2efff] text-[#5030E5]"
+                : "border-[#787486] text-[#787486] hover:bg-[#f7f6fc]"
+            }`}
+          >
+            <img src={Calendar} />
+            Today
             <img src={ChevronDown} />
-          </Button>
-          <Button className="flex rounded-md border border-[#787486] p-2">
-            <div className="flex items-center gap-1.5">
-              <img src={Calendar} />
-              Today
-              <img src={ChevronDown} />
-            </div>
           </Button>
         </div>
 
-        <div className="flex items-center gap-5">
-          <Button className="flex items-center gap-1.5 rounded-md border border-[#787486] p-2">
+        <div className="flex items-center gap-3">
+          <Button className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[#787486] px-2.5 text-xs text-[#787486] hover:bg-[#f7f6fc]">
             <img src={People} />
             Share
           </Button>
           <img src={Separator} />
-          <div className="flex items-center gap-5.5">
-            <Button>
+          <div className="flex items-center gap-1">
+            <Button className="grid place-items-center rounded-md bg-[#5030E5]">
               <img src={List} />
             </Button>
-
-            <Button>
+            <Button className="grid  place-items-center rounded-md text-[#787486] hover:bg-[#f0eef9]">
               <img src={Grid} />
             </Button>
           </div>
