@@ -1,9 +1,10 @@
 import  MoreHorizontal  from "../../assets/MoreHorizontal.svg";
 import { projects } from "../../data/sidebarData";
 import AddSquareIcon from "../../assets/AddSquareIcon.svg"
+
 export const ProjectList = ({ collapsed, activeItem, setActiveItem }) => {
   return (
-    <div className="border-t border-[#dbdbdb] px-3 py-5">
+    <div className="border-t border-[#dbdbdb] px-3 py-5 ">
       {!collapsed && (
         <div className="flex justify-between items-center px-2 mb-3">
           <span className="text-[10px] font-semibold text-gray-400">
